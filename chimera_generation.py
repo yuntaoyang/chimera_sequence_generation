@@ -36,7 +36,7 @@ def main(argv):
     input_directory = '' # input directory
     output_directory = '' # output directory
     fasta_1 = '' # the fasta file of the first protein
-    fasta_2 = '' # the second file of the first protein
+    fasta_2 = '' # the fasta file of the second protein
     linker = '' # linker 
     length = '' # repeat times of linker
     
@@ -52,7 +52,7 @@ def main(argv):
             print('-i: input directory;')
             print('-o: output directory;')
             print('-a: the fasta file of the first protein;')
-            print('-b: the second file of the first protein;')
+            print('-b: the fasta file of the second protein;')
             print('-l: GGGGS or G;')
             print('-n: repeat times of linker;')
             sys.exit()
