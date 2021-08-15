@@ -26,6 +26,8 @@ os
 3. -o: output filename
 4. -a: the fasta file of the first protein
 5. -b: the fasta file of the second protein
+4. -c: the start and end for the first protein, (1) s,e (2) f
+5. -d: the start and end for the second protein, (1) s,e (2) f
 6. -l: GGGGS or G
 7. -n: repeat times of linker
 
