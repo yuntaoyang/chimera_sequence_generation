@@ -19,7 +19,15 @@ os
 6. -c: a list of chimeras, colnames: chimera, separate protein names by comma (chimera.csv)
 7. -l: linker (GGGGS or G)
 8. -n: repeat times of linker
-
+***
+## 4. chimera_generation_.py: generate a chimera sequence from two fasta files
+1. -h: guidence
+2. -i: input directory
+3. -o: output filename
+4. -a: the fasta file of the first protein
+5. -b: the fasta file of the second protein
+6. -l: GGGGS or G
+7. -n: repeat times of linker
 
 
 
