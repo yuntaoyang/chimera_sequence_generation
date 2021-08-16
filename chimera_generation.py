@@ -12,29 +12,33 @@ def chimera(input_directory,output_directory,fasta_1,fasta_2,aa,bb,linker,length
     f_2 = open(input_directory+fasta_2,"r")
     lines_1 = f_1.readlines()
     lines_2 = f_2.readlines()
-    for n,line in enumerate(lines_1):
+    f_1_name = ''
+    f_2_name = ''
+    f_1_seq = ''
+    f_2_seq = ''
+    for line in lines_1:
         if line[0] == '>':
             f_1_name = (line[1:].split(' ')[0][:-1])
-        if line == '\n':
-            f_1_seq = lines_1[n-1][:-1]
-    for n,line in enumerate(lines_2):
+        else:
+            f_1_seq = f_1_seq + line[:-1]
+    for line in lines_2:
         if line[0] == '>':
             f_2_name = (line[1:].split(' ')[0][:-1])
-        if line == '\n':
-            f_2_seq = lines_2[n-1][:-1]
+        else:
+            f_2_seq = f_2_seq + line[:-1]
     # generate sequence of chimera 
     if aa == 'f' and bb == 'f':
         c = f_1_seq+linker*int(length)+f_2_seq
     elif aa == 'f' and bb != 'f':
         l_2 = bb.split(',')
-        c = f_1_seq+linker*int(length)+f_2_seq[(int(l_2[0])-1):(int(l_2[1])+1)]
+        c = f_1_seq+linker*int(length)+f_2_seq[(int(l_2[0])-1):(int(l_2[1]))]
     elif aa != 'f' and bb == 'f':
         l_1 = aa.split(',')
-        c = f_1_seq[(int(l_1[0])-1):(int(l_1[1])+1)]+linker*int(length)+f_2_seq
+        c = f_1_seq[(int(l_1[0])-1):(int(l_1[1]))]+linker*int(length)+f_2_seq
     else:
         l_1 = aa.split(',')
         l_2 = bb.split(',')
-        c = f_1_seq[(int(l_1[0])-1):(int(l_1[1])+1)]+linker*int(length)+f_2_seq[(int(l_2[0])-1):(int(l_2[1])+1)]
+        c = f_1_seq[(int(l_1[0])-1):(int(l_1[1]))]+linker*int(length)+f_2_seq[(int(l_2[0])-1):(int(l_2[1]))]
     file_name = f_1_name+'_'+f_2_name+'_'+linker+'_'+str(length) # set up file name 
     if not os.path.exists(output_directory):
         os.mkdir(output_directory)
@@ -57,19 +61,19 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"hi:o:a:b:c:d:l:n:")
     except getopt.GetoptError:
-        print('python sequence_generation.py -i <> -o <> -a <> -b <> -c <> -d <> -l <> -n <>')
+        print('python chimera_generation.py -i <> -o <> -a <> -b <> -c <> -d <> -l <> -n <>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
             print('This script can generate protein sequence (.fasta) for chimera from two fasta files.')
-            print('command: python sequence_generation.py -i <> -o <> -a <> -b <> -c <> -d <> -l <> -n <>')
+            print('command: chimera_generation.py -i <> -o <> -a <> -b <> -c <> -d <> -l <> -n <>')
             print('-i: input directory;')
             print('-o: output directory;')
             print('-a: the fasta file of the first protein;')
             print('-b: the fasta file of the second protein;')
             print('-c: the start and end for the first protein;')
             print('-d: the start and end for the second protein;')
-            print('-aa & -bb: s for start, e for end, f for full length, example: (1) s,e (2) f;')
+            print('-c & -d: s for start, e for end, f for full length, example: (1) s,e (2) f;')
             print('-l: GGGGS or G;')
             print('-n: repeat times of linker;')
             sys.exit()
