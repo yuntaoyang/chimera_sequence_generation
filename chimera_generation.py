@@ -66,7 +66,7 @@ def main(argv):
     for opt, arg in opts:
         if opt == '-h':
             print('This script can generate protein sequence (.fasta) for chimera from two fasta files.')
-            print('command: chimera_generation.py -i <> -o <> -a <> -b <> -c <> -d <> -l <> -n <>')
+            print('command: python chimera_generation.py -i <> -o <> -a <> -b <> -c <> -d <> -l <> -n <>')
             print('-i: input directory;')
             print('-o: output directory;')
             print('-a: the fasta file of the first protein;')
